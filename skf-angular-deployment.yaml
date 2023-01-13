@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.27.0 (b0ed6a2c9)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: skf-angular
+  name: skf-angular
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: skf-angular
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.27.0 (b0ed6a2c9)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: skf-angular
+    spec:
+      containers:
+        - env:
+            - name: FRONTEND_URI
+              value: http://localhost
+            - name: SKIP_LOGIN
+              value: skfprovider
+          image: blabla1337/skf-angular:4.0.2
+          name: skf-angular-container
+          resources: {}
+      restartPolicy: Always
+status: {}
